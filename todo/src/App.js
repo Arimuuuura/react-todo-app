@@ -1,4 +1,9 @@
+import React, { useState } from 'react';
+
 export const App = () => {
+
+  const [ incompleteTodos, setIncompleteTodos ] = useState(["例) 食事"])
+
   return (
     <>
       <div className="input-area">
@@ -8,13 +13,19 @@ export const App = () => {
       <div className="incomplete-area">
         <p className="title">未完了のTODO</p>
         <ul>
-          <li>
-            <div className="list-row">
-              <p>例) 食事</p>
-              <button>完了</button>
-              <button>削除</button>
-            </div>
-          </li>
+          {
+            incompleteTodos.map((todo) => {
+              return (
+                <li key={ todo }>
+                  <div className="list-row">
+                    <p>{ todo }</p>
+                    <button>完了</button>
+                    <button>削除</button>
+                  </div>
+                </li>
+              )
+            })
+          }
         </ul>
       </div>
       <div className="complete-area">
