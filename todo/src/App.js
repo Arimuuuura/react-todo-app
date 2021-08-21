@@ -20,10 +20,23 @@ export const App = () => {
   // 削除ボタンを押したときのイベント
   const onClickDelete = (index) => {
     if (index === 0) return;
-    const newTodo = [ ...incompleteTodos ];
+    const deleteTodo = [ ...incompleteTodos ];
     // splice(削除したい順番, 削除したい数)
-    newTodo.splice(index, 1);
-    setIncompleteTodos(newTodo);
+    deleteTodo.splice(index, 1);
+    setIncompleteTodos(deleteTodo);
+  }
+
+  // 完了ボタンを押したときのイベント
+  const onClickComplete = (index) => {
+    if (index === 0) return;
+    // 未完了リストから削除
+    const inCompleteTodo = [ ...incompleteTodos ];
+    inCompleteTodo.splice(index, 1);
+    // 完了リストへ追加
+    const completeTodo = [ ...completeTodos, incompleteTodos[index] ];
+    // それぞれの state を更新
+    setIncompleteTodos(inCompleteTodo);
+    setCompleteTodos(completeTodo);
   }
 
   return (
@@ -41,7 +54,7 @@ export const App = () => {
                 <li key={ index }>
                   <div className="list-row">
                     <p>{ todo }</p>
-                    <button>完了</button>
+                    <button onClick={() => onClickComplete(index)}>完了</button>
                     <button onClick={() => onClickDelete(index)}>削除</button>
                   </div>
                 </li>
