@@ -33,10 +33,23 @@ export const App = () => {
     const inCompleteTodo = [ ...incompleteTodos ];
     inCompleteTodo.splice(index, 1);
     // 完了リストへ追加
-    const completeTodo = [ ...completeTodos, incompleteTodos[index] ];
+    const newCompleteTodo = [ ...completeTodos, incompleteTodos[index] ];
     // それぞれの state を更新
     setIncompleteTodos(inCompleteTodo);
-    setCompleteTodos(completeTodo);
+    setCompleteTodos(newCompleteTodo);
+  }
+
+  // 戻すボタンを押したときのイベント
+  const onClickBack = (index) => {
+    if (index === 0) return;
+    // 完了済みから削除
+    const backTodo = [ ...completeTodos ];
+    backTodo.splice(index, 1);
+    // 未完了リストへ追加
+    const newInCompleteTodo = [ ...incompleteTodos, completeTodos[index] ];
+    // それぞれの state を更新
+    setCompleteTodos(backTodo);
+    setIncompleteTodos(newInCompleteTodo);
   }
 
   return (
@@ -67,12 +80,12 @@ export const App = () => {
         <p className="title">完了したTODO</p>
         <ul>
           {
-            completeTodos.map((todo) => {
+            completeTodos.map((todo, index) => {
               return (
-                <li key={ todo }>
+                <li key={ index }>
                   <div className="list-row">
                     <p>{ todo }</p>
-                    <button>戻す</button>
+                    <button onClick={() => onClickBack(index)}>戻す</button>
                   </div>
                 </li>
               )
