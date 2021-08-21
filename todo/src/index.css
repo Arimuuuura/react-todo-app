@@ -35,33 +35,6 @@ button:hover {
   cursor: pointer;
 }
 
-.input-area {
-  background-color: #c1e4ff;
-  width: 400px;
-  height: 30px;
-  padding: 8px;
-  margin: 8px;
-  border-radius: 8px;
-}
-
-.incomplete-area {
-  background-color: #aefad7;
-  width: 400px;
-  min-height: 200px;
-  padding: 8px;
-  margin: 8px;
-  border-radius: 8px;
-}
-
-.complete-area {
-  background-color: #fcfcc3;
-  width: 400px;
-  min-height: 200px;
-  padding: 8px;
-  margin: 8px;
-  border-radius: 8px;
-}
-
 .title {
   text-align: center;
   margin-top: 0;
