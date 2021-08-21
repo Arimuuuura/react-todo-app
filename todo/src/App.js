@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 
 export const App = () => {
 
-  const [ incompleteTodos, setIncompleteTodos ] = useState(["例) 食事"])
+  const [ incompleteTodos, setIncompleteTodos ] = useState(["例) 食事"]);
+  const [completeTodos, setCompleteTodos] = useState(["例) 運動"]);
 
   return (
     <>
@@ -31,12 +32,18 @@ export const App = () => {
       <div className="complete-area">
         <p className="title">完了したTODO</p>
         <ul>
-          <li>
-            <div className="list-row">
-              <p>例) 運動</p>
-              <button>戻す</button>
-            </div>
-          </li>
+          {
+            completeTodos.map((todo) => {
+              return (
+                <li key={ todo }>
+                  <div className="list-row">
+                    <p>{ todo }</p>
+                    <button>戻す</button>
+                  </div>
+                </li>
+              )
+            })
+          }
         </ul>
       </div>
     </>
