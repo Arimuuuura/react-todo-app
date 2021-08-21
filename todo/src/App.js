@@ -3,16 +3,25 @@ import React, { useState } from 'react';
 export const App = () => {
 
   const [ incompleteTodos, setIncompleteTodos ] = useState(["例) 食事"]);
-  const [completeTodos, setCompleteTodos] = useState(["例) 運動"]);
-  const [inputText, setInputText] = useState('');
+  const [ completeTodos, setCompleteTodos ] = useState(["例) 運動"]);
+  const [ inputText, setInputText ] = useState('');
 
+  // 入力された値を取得
   const onChangeInputText = (event) => setInputText(event.target.value);
+
+  // 追加ボタンを押されたときのイベント
+  const onClickAdd = () => {
+    if (inputText === '') return;
+    const newTodo = [ ...incompleteTodos, inputText ];
+    setIncompleteTodos(newTodo);
+    setInputText('');
+  }
 
   return (
     <>
       <div className="input-area">
         <input placeholder="TODOを入力" value={ inputText } onChange={ onChangeInputText } />
-        <button>追加</button>
+        <button onClick={onClickAdd}>追加</button>
       </div>
       <div className="incomplete-area">
         <p className="title">未完了のTODO</p>
