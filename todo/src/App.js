@@ -17,6 +17,15 @@ export const App = () => {
     setInputText('');
   }
 
+  // 削除ボタンを押したときのイベント
+  const onClickDelete = (index) => {
+    if (index === 0) return;
+    const newTodo = [ ...incompleteTodos ];
+    // splice(削除したい順番, 削除したい数)
+    newTodo.splice(index, 1);
+    setIncompleteTodos(newTodo);
+  }
+
   return (
     <>
       <div className="input-area">
@@ -27,13 +36,13 @@ export const App = () => {
         <p className="title">未完了のTODO</p>
         <ul>
           {
-            incompleteTodos.map((todo) => {
+            incompleteTodos.map((todo, index) => {
               return (
-                <li key={ todo }>
+                <li key={ index }>
                   <div className="list-row">
                     <p>{ todo }</p>
                     <button>完了</button>
-                    <button>削除</button>
+                    <button onClick={() => onClickDelete(index)}>削除</button>
                   </div>
                 </li>
               )
