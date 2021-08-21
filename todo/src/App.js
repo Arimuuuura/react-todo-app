@@ -4,11 +4,14 @@ export const App = () => {
 
   const [ incompleteTodos, setIncompleteTodos ] = useState(["例) 食事"]);
   const [completeTodos, setCompleteTodos] = useState(["例) 運動"]);
+  const [inputText, setInputText] = useState('');
+
+  const onChangeInputText = (event) => setInputText(event.target.value);
 
   return (
     <>
       <div className="input-area">
-        <input placeholder="TODOを入力" />
+        <input placeholder="TODOを入力" value={ inputText } onChange={ onChangeInputText } />
         <button>追加</button>
       </div>
       <div className="incomplete-area">
